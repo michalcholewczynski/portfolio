@@ -7,15 +7,7 @@ function initializeNavigation() {
 
   const navigationItems = Array.from(navigation.querySelectorAll('a[href^="#"]'))
     .map((link) => {
-      let targetId;
-
-      try {
-        targetId = decodeURIComponent(link.hash.slice(1));
-      } catch {
-        return null;
-      }
-
-      const target = document.getElementById(targetId);
+      const target = document.getElementById(link.hash.slice(1));
 
       if (!target) {
         return null;
@@ -31,7 +23,6 @@ function initializeNavigation() {
 
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   let activeSectionId = "";
-  let scrollFrame = null;
 
   function setActiveSection(sectionId) {
     if (sectionId === activeSectionId) {
@@ -43,8 +34,6 @@ function initializeNavigation() {
     navigationItems.forEach(({ link, target }) => {
       const isActive = target.id === sectionId;
 
-      link.classList.toggle("is-active", isActive);
-
       if (isActive) {
         link.setAttribute("aria-current", "location");
         return;
@@ -54,41 +43,6 @@ function initializeNavigation() {
     });
   }
 
-  function getActiveSectionId() {
-    const markerPosition = window.scrollY + window.innerHeight * 0.35;
-    let activeTarget = navigationItems[0].target;
-
-    navigationItems.forEach(({ target }) => {
-      const targetTop = target.getBoundingClientRect().top + window.scrollY;
-
-      if (targetTop <= markerPosition) {
-        activeTarget = target;
-      }
-    });
-
-    const documentBottom = window.scrollY + window.innerHeight;
-    const pageBottom = document.documentElement.scrollHeight;
-
-    if (documentBottom >= pageBottom - 2) {
-      activeTarget = navigationItems[navigationItems.length - 1].target;
-    }
-
-    return activeTarget.id;
-  }
-
-  function updateActiveSection() {
-    scrollFrame = null;
-    setActiveSection(getActiveSectionId());
-  }
-
-  function scheduleActiveSectionUpdate() {
-    if (scrollFrame !== null) {
-      return;
-    }
-
-    scrollFrame = window.requestAnimationFrame(updateActiveSection);
-  }
-
   function scrollToSection(target) {
     target.scrollIntoView({
       behavior: reducedMotionQuery.matches ? "auto" : "smooth",
@@ -96,43 +50,60 @@ function initializeNavigation() {
     });
   }
 
-  function handleNavigationClick(event, target) {
-    event.preventDefault();
-    scrollToSection(target);
+  navigationItems.forEach(({ link, target }) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      scrollToSection(target);
 
-    const targetUrl = new URL(window.location.href);
-    targetUrl.hash = target.id;
+      if (window.location.hash !== `#${target.id}`) {
+        window.history.pushState({ section: target.id }, "", `#${target.id}`);
+      }
 
-    if (window.location.href !== targetUrl.href) {
-      window.history.pushState({ section: target.id }, "", targetUrl);
-    }
-
-    setActiveSection(target.id);
-  }
+      setActiveSection(target.id);
+    });
+  });
 
   function handleHistoryNavigation() {
     const targetId = window.location.hash.slice(1);
     const navigationItem = navigationItems.find(({ target }) => target.id === targetId);
 
-    if (navigationItem) {
-      scrollToSection(navigationItem.target);
+    if (!navigationItem) {
+      return;
     }
 
-    scheduleActiveSectionUpdate();
+    scrollToSection(navigationItem.target);
+    setActiveSection(navigationItem.target.id);
   }
 
-  navigationItems.forEach(({ link, target }) => {
-    link.addEventListener("click", (event) => {
-      handleNavigationClick(event, target);
-    });
-  });
-
-  window.addEventListener("scroll", scheduleActiveSectionUpdate, { passive: true });
-  window.addEventListener("resize", scheduleActiveSectionUpdate);
   window.addEventListener("hashchange", handleHistoryNavigation);
   window.addEventListener("popstate", handleHistoryNavigation);
 
-  scheduleActiveSectionUpdate();
+  if (!("IntersectionObserver" in window)) {
+    setActiveSection(navigationItems[0].target.id);
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+
+      if (visibleEntry) {
+        setActiveSection(visibleEntry.target.id);
+      }
+    },
+    {
+      rootMargin: "-20% 0px -55% 0px",
+      threshold: [0.1, 0.4, 0.75],
+    }
+  );
+
+  navigationItems.forEach(({ target }) => observer.observe(target));
+
+  const initialSectionId = window.location.hash.slice(1);
+  const initialItem = navigationItems.find(({ target }) => target.id === initialSectionId);
+  setActiveSection(initialItem ? initialItem.target.id : navigationItems[0].target.id);
 }
 
 initializeNavigation();

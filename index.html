@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Michał Cholewczyński — Fullstack Developer</title>
+    <title>Michał Cholewczyński | Fullstack Developer</title>
     <meta
       name="description"
       content="Portfolio Michała Cholewczyńskiego: strony internetowe i aplikacje webowe oraz wybrane realizacje z użyciem HTML, CSS, PHP, MySQL, Astro, Tailwind CSS i Hygraph."
     >
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Michał Cholewczyński — Fullstack Developer">
+    <meta property="og:title" content="Michał Cholewczyński | Fullstack Developer">
     <meta
       property="og:description"
       content="Portfolio Michała Cholewczyńskiego: strony internetowe i aplikacje webowe oraz wybrane realizacje z użyciem HTML, CSS, PHP, MySQL, Astro, Tailwind CSS i Hygraph."
@@ -19,8 +19,11 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <header>
-      <p>Michał Cholewczyński — Fullstack Developer</p>
+    <header class="site-header">
+      <a class="wordmark" href="#about" aria-label="Michał Cholewczyński, początek strony">
+        <span>Michał Cholewczyński</span>
+        <span>Fullstack Developer</span>
+      </a>
       <nav aria-label="Nawigacja główna">
         <ul>
           <li><a href="#about">O mnie</a></li>
@@ -31,38 +34,45 @@
     </header>
 
     <main>
-      <section id="about" aria-labelledby="about-title">
-        <h1 id="about-title">Michał Cholewczyński</h1>
-        <p>
-          Tworzę strony internetowe i aplikacje webowe. W portfolio pokazuję wybrane realizacje oraz technologie
-          wykorzystane przy ich budowie: HTML, CSS, PHP, MySQL, Astro, Tailwind CSS i Hygraph.
-        </p>
+      <section id="about" class="hero" aria-labelledby="about-title">
+        <div class="hero-copy">
+          <h1 id="about-title">Michał Cholewczyński</h1>
+          <p class="hero-intro">
+            Tworzę strony internetowe i aplikacje webowe, używając HTML, CSS, PHP, MySQL, Astro, Tailwind CSS i Hygraph.
+          </p>
+          <a class="hero-link" href="#projects">Zobacz projekty</a>
+        </div>
+        <figure class="hero-visual">
+          <img src="assets/hero-workspace.jpg" alt="Abstrakcyjny widok ciemnej powierzchni roboczej z niebieską folią kreślarską" width="1536" height="1024" fetchpriority="high">
+        </figure>
       </section>
 
-      <section id="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title">Wykonane projekty</h2>
+      <section id="projects" class="projects" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <h2 id="projects-title">Wykonane projekty</h2>
+        </div>
 
-        <div class="project-grid">
-          <article class="project-card" aria-labelledby="project-gsm-recycling-title">
+        <div class="project-collection">
+          <article class="project project-primary" aria-labelledby="project-gsm-recycling-title">
             <div class="project-preview">
-              <img src="assets/gsmrecycling.webp" alt="Zrzut ekranu strony GSM Recycling">
+              <img src="assets/gsmrecycling.webp" alt="Zrzut ekranu strony GSM Recycling" loading="lazy" width="1440" height="900">
             </div>
-            <div class="project-card-body">
+            <div class="project-details">
               <h3 id="project-gsm-recycling-title">GSM Recycling</h3>
               <p>Strona WWW firmy zajmującej się recyklingiem telefonów.</p>
               <ul class="project-technologies" aria-label="Technologie projektu">
                 <li>HTML</li>
                 <li>Tailwind CSS</li>
               </ul>
-              <a class="project-link" href="https://www.gsmrecycling.pl">Otwórz stronę GSM Recycling</a>
+              <a class="project-link" href="https://www.gsmrecycling.pl" target="_blank" rel="noopener noreferrer">Otwórz stronę GSM Recycling</a>
             </div>
           </article>
 
-          <article class="project-card" aria-labelledby="project-atari-title">
+          <article class="project project-secondary" aria-labelledby="project-atari-title">
             <div class="project-preview">
-              <img src="assets/atarimuzeum.webp" alt="Zrzut ekranu strony Atari Muzeum">
+              <img src="assets/atarimuzeum.webp" alt="Zrzut ekranu strony Atari Muzeum" loading="lazy" width="1440" height="900">
             </div>
-            <div class="project-card-body">
+            <div class="project-details">
               <h3 id="project-atari-title">Atari Muzeum</h3>
               <p>Strona internetowa muzeum poświęconego komputerom Atari.</p>
               <ul class="project-technologies" aria-label="Technologie projektu">
@@ -70,15 +80,15 @@
                 <li>CSS</li>
                 <li>MySQL</li>
               </ul>
-              <a class="project-link" href="https://www.atarimuzeum.pl">Otwórz stronę ATARImuzeum</a>
+              <a class="project-link" href="https://www.atarimuzeum.pl" target="_blank" rel="noopener noreferrer">Otwórz stronę ATARImuzeum</a>
             </div>
           </article>
 
-          <article class="project-card" aria-labelledby="project-gsm-doctor-title">
+          <article class="project project-tertiary" aria-labelledby="project-gsm-doctor-title">
             <div class="project-preview">
-              <img src="assets/gsmdoctor.webp" alt="Zrzut ekranu strony Serwis GSM Doctor">
+              <img src="assets/gsmdoctor.webp" alt="Zrzut ekranu strony Serwis GSM Doctor" loading="lazy" width="1440" height="900">
             </div>
-            <div class="project-card-body">
+            <div class="project-details">
               <h3 id="project-gsm-doctor-title">Serwis GSMdoctor</h3>
               <p>Strona internetowa serwisu naprawy telefonów komórkowych.</p>
               <ul class="project-technologies" aria-label="Technologie projektu">
@@ -86,26 +96,24 @@
                 <li>Tailwind CSS</li>
                 <li>Hygraph</li>
               </ul>
-              <a class="project-link" href="https://www.serwis.gsmdoctor.pl">Otwórz stronę serwisu GSMdoctor</a>
+              <a class="project-link" href="https://www.serwis.gsmdoctor.pl" target="_blank" rel="noopener noreferrer">Otwórz stronę serwisu GSMdoctor</a>
             </div>
           </article>
         </div>
       </section>
 
-      <section id="contact" aria-labelledby="contact-title">
-        <h2 id="contact-title">Kontakt</h2>
-        <p>Masz pomysł na stronę internetową lub aplikację? Napisz, żeby omówić zakres projektu i kolejny krok.</p>
-        <p>
-          <a href="mailto:michal@cholewczynski.pl">Napisz e-mail: michal@cholewczynski.pl</a>
-        </p>
-        <ul class="contact-links">
-          <li>
-            <a href="https://github.com/michalcholewczynski">Otwórz profil na GitHub</a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/michal-cholewczynski">Otwórz profil na LinkedIn</a>
-          </li>
-        </ul>
+      <section id="contact" class="contact" aria-labelledby="contact-title">
+        <div>
+          <h2 id="contact-title">Kontakt</h2>
+        </div>
+        <div class="contact-content">
+          <p>Masz pomysł na stronę internetową lub aplikację? Napisz, żeby omówić zakres projektu i kolejny krok.</p>
+          <a class="email-link" href="mailto:michal@cholewczynski.pl">Napisz e-mail: michal@cholewczynski.pl</a>
+          <ul class="contact-links">
+            <li><a href="https://github.com/michalcholewczynski" target="_blank" rel="noopener noreferrer">Otwórz profil na GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/michal-cholewczynski" target="_blank" rel="noopener noreferrer">Otwórz profil na LinkedIn</a></li>
+          </ul>
+        </div>
       </section>
     </main>
 
