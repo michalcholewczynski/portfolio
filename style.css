@@ -126,6 +126,98 @@ main > section {
   color: var(--color-text-muted);
 }
 
+#projects {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-kicker {
+  margin-bottom: var(--space-2);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.section-intro {
+  margin-bottom: var(--space-6);
+  color: var(--color-text-muted);
+}
+
+.project-grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  align-items: stretch;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 32rem;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.project-preview {
+  position: relative;
+  flex: 0 0 auto;
+  height: clamp(13rem, 40vw, 18rem);
+  min-height: 13rem;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.project-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.project-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-5);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-5);
+}
+
+.project-card h3 {
+  margin-bottom: var(--space-3);
+}
+
+.project-card-body > p {
+  color: var(--color-text-muted);
+}
+
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  max-width: none;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  list-style: none;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.project-technologies li {
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+}
+
+.project-link {
+  margin-top: auto;
+  font-weight: 600;
+}
 img,
 picture,
 svg,
@@ -262,6 +354,16 @@ pre {
     grid-column: 2;
     grid-row: 1 / span 3;
     align-self: end;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 68rem) {
+  .project-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

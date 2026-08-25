@@ -14,7 +14,6 @@
       property="og:description"
       content="Michał Cholewczyński jest fullstack developerem z doświadczeniem w budowaniu aplikacji webowych przy użyciu nowoczesnych technologii."
     >
-    <meta property="og:url" content="https://example.com/portfolio">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
   </head>
@@ -32,7 +31,6 @@
 
     <main>
       <section id="about" aria-labelledby="about-title">
-        <p>O mnie</p>
         <h1 id="about-title">Michał Cholewczyński</h1>
         <p>Fullstack Developer</p>
         <p>
@@ -43,25 +41,63 @@
       </section>
 
       <section id="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title">Selected work</h2>
-        <p>[Project overview placeholder. Three project entries will be added in step 4.]</p>
+        <h2 id="projects-title">Wykonane projekty</h2>
 
-        <article aria-labelledby="project-placeholder-title">
-          <h3 id="project-placeholder-title">[Project title placeholder]</h3>
-          <p>[Specific project description placeholder.]</p>
-          <p><strong>Technologies:</strong> [Technology list placeholder]</p>
-          <p>
-            <strong>Project URL:</strong>
-            <a href="https://example.com/project-placeholder">Open placeholder project</a>
-          </p>
-        </article>
+        <div class="project-grid">
+          <article class="project-card" aria-labelledby="project-gsm-recycling-title">
+            <div class="project-preview">
+              <img src="assets/gsmrecycling.webp" alt="Zrzut ekranu strony GSM Recycling">
+            </div>
+            <div class="project-card-body">
+              <h3 id="project-gsm-recycling-title">GSM Recycling</h3>
+              <p>Strona WWW firmy zajmującej się recyklingiem telefonów.</p>
+              <ul class="project-technologies" aria-label="Technologie projektu">
+                <li>HTML</li>
+                <li>Tailwind CSS</li>
+              </ul>
+              <a class="project-link" href="https://www.gsmrecycling.pl">Otwórz stronę GSM Recycling</a>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="project-atari-title">
+            <div class="project-preview">
+              <img src="assets/atarimuzeum.webp" alt="Zrzut ekranu strony Atari Muzeum">
+            </div>
+            <div class="project-card-body">
+              <h3 id="project-atari-title">Atari Muzeum</h3>
+              <p>Strona internetowa muzeum poświęconego komputerom Atari.</p>
+              <ul class="project-technologies" aria-label="Technologie projektu">
+                <li>PHP</li>
+                <li>CSS</li>
+                <li>MySQL</li>
+              </ul>
+              <a class="project-link" href="https://www.atarimuzeum.pl">Otwórz stronę ATARImuzeum</a>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="project-gsm-doctor-title">
+            <div class="project-preview">
+              <img src="assets/gsmdoctor.webp" alt="Zrzut ekranu strony Serwis GSM Doctor">
+            </div>
+            <div class="project-card-body">
+              <h3 id="project-gsm-doctor-title">Serwis GSMdoctor</h3>
+              <p>Strona internetowa serwisu naprawy telefonów komórkowych.</p>
+              <ul class="project-technologies" aria-label="Technologie projektu">
+                <li>Astro</li>
+                <li>Tailwind CSS</li>
+                <li>Hygraph</li>
+              </ul>
+              <a class="project-link" href="https://www.serwis.gsmdoctor.pl">Otwórz stronę GSM Doctor</a>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section id="contact" aria-labelledby="contact-title">
         <h2 id="contact-title">Kontakt</h2>
-        <p>[Contact introduction placeholder.]</p>
+        <p>Porozmawiajmy o stronie internetowej lub aplikacji dopasowanej do Twoich potrzeb.</p>
         <p>
-          <a href="mailto:michal@cholewczynski.pl">Napisz wiadomość e-mail: michal@cholewczynski.pl</a>
+          <a href="mailto:michal@cholewczynski.pl">Email: michal@cholewczynski.pl</a>
         </p>
         <ul>
           <li>
