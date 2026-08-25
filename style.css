@@ -202,6 +202,7 @@ main > section {
 .project-card {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   min-height: 32rem;
   overflow: hidden;
   border: 1px solid var(--color-border);
@@ -228,11 +229,8 @@ main > section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: var(--space-5);
+  min-width: 0;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   padding: var(--space-5);
 }
 
@@ -264,6 +262,7 @@ main > section {
 
 .project-link {
   margin-top: auto;
+  overflow-wrap: anywhere;
   font-weight: 600;
 }
 
