@@ -47,7 +47,8 @@
   --color-border: #354052;
   --color-focus: #fbbf24;
   --font-sans: "DM Sans", sans-serif;
-  --font-mono: "DM Mono", monospace;
+  --font-mono: var(--font-sans);
+  /* --font-mono: "DM Mono", monospace; */
   --content-max: 76rem;
   --content-measure: 65ch;
   --radius: 0.875rem;
